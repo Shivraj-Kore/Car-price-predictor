@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+     <head>
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+          <title>car price predictor</title>
+          <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <h1>price predictor</h1>
+    <div style="text-align: center">
+     <form method="POST" action="#">
+          {% csrf_token %}
+     <label ><b> Select company </b></label>
+     <select class="selectpicker form-select" id="company" name="company" onchange="load_car_model(this.id , car_model)">
+          
+          {% for value in companies%}
+          
+          <option value="{{value}}">{{value}}</option>
+          {% endfor %}
+          
+     </select>
+     <label ><b>Select Model</b></label>
+     <select class="selectpicker form-select" id="car_model" name="car_model" aria-label="Select-model">
+          
+          {% for value in name%}
+          
+          <option value="{{value}}">{{value}}</option>
+          {% endfor %}
+          
+     </select>
+
+     <label ><b>Select year</b></label>
+     <select class="selectpicker form-select" id="year" name="year" aria-label="Select-year">
+          
+          {% for value in year%}
+          
+          <option value="{{value}}">{{value}}</option>
+          {% endfor %}
+          
+     </select>
+     
+     <label ><b>Select fuel type</b></label>
+     <select class="selectpicker form-select" id="fueltype" name="fueltype" aria-label="Select-fuel type">
+          
+          {% for value in fuel_type%}
+          
+          <option value="{{value}}">{{value}}</option>
+          {% endfor %}
+          
+     </select>
+     
+     <label><b>Enter number of kilometers travelled</b></label>
+     <div class="input-group mb-3">
+          <span class="input-group-text" id="kms_driven" name="kms_driven">Enter KMS here</span>
+          <input type="text" class="form-control" aria-label="Sizing example input" id="kms_driven" name="kms_driven" aria-describedby="inputGroup-sizing-default">
+     </div>
+          
+          <button type="button" class="btn btn-primary form-control" onclick="send_data()">Submit</button>     
+     
+     </form>
+
+     <div>
+          {% if prediction %}
+               <p>Prediction: {{ prediction }}</p>
+          {% endif %}
+     </div>
+</div>
+
+<script>
+
+</script>
+
+</body>
+</html>
